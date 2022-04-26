@@ -43,12 +43,12 @@
     define ('VIEW_PATH_HOME', SITE_ROOT . 'module/home/view/');
 
     //MODEL_SHOP
-    // define('UTILS_SHOP', SITE_ROOT . 'module/shop/utils/');
-    // define('DAO_SHOP', SITE_ROOT . 'module/shop/model/DAO/');
-    // define('BLL_SHOP', SITE_ROOT . 'module/shop/model/BLL/');
-    // define('MODEL_SHOP', SITE_ROOT . 'module/shop/model/model/');
-    // define('JS_VIEW_SHOP', SITE_PATH . 'module/shop/view/js/');
-    // define ('VIEW_PATH_SHOP', SITE_ROOT . 'module/shop/view/');
+    define('UTILS_SHOP', SITE_ROOT . 'module/shop/utils/');
+    define('DAO_SHOP', SITE_ROOT . 'module/shop/model/DAO/');
+    define('BLL_SHOP', SITE_ROOT . 'module/shop/model/BLL/');
+    define('MODEL_SHOP', SITE_ROOT . 'module/shop/model/model/');
+    define('JS_VIEW_SHOP', SITE_PATH . 'module/shop/view/js/');
+    define ('VIEW_PATH_SHOP', SITE_ROOT . 'module/shop/view/');
     
     // //MODEL_CONTACT
     // define('MODEL_CONTACT', SITE_ROOT . 'module/contact/model/model/');

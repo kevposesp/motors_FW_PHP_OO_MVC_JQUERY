@@ -47,7 +47,7 @@ function friendlyURL(url) {
         	link +=  "/"+aux[1];
         }
     }
-    return "http://localhost/motors_FRAMEWORK_PHP_OO_MVC" + link;
+    return "http://localhost/motors_FW_PHP_OO_MVC_JQUERY" + link;
 }
 
 /*==================== LOAD MENU ====================*/

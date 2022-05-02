@@ -82,8 +82,6 @@
 <script src="view/js/main.js"></script> -->
 <!-- <script src="view/js/search.js"></script> -->
 
-<!-- <script src="<?php echo SITE_PATH ?>module/search/view/js/search.js"></script> -->
-
 </body>
 
 </html>

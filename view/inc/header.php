@@ -61,5 +61,6 @@
     </select>
   </div>
   <div class="cont_search_home" id="cont_search_homent"></div>
+  <!-- <div class="cont_search_home" id="cont_search"></div> -->
 </header>
 <!-- ***** Header Area End ***** -->

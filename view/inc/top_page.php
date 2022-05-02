@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="view/vendor/alertify/css/themes/default.min.css" />
 
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <script src="<?php echo SITE_PATH ?>module/search/view/js/search.js"></script>
 </head>
 
 <body>

@@ -48,7 +48,7 @@
 
     <script src="<?php echo SITE_PATH ?>module/home/view/js/home.js"></script>
     <script src="<?php echo SITE_PATH ?>view/js/main.js"></script>
-
+    <script src="<?php echo SITE_PATH ?>module/search/view/js/search.js"></script>
 </head>
 
 <body>

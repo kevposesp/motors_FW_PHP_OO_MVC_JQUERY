@@ -1,5 +1,5 @@
 /* The Modal (background) */
-.modal {
+.modalK {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 120; /* Sit on top */
@@ -165,4 +165,20 @@
 
 *::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(77, 161, 112, 0.6);
+}
+
+
+
+
+
+// Bootstrap Modal
+.modal {
+    &.recoverPass {
+        .input-recover-pass {
+            border: none;
+            &:focus-visible {
+                outline: none;
+            }
+        }
+    }
 }

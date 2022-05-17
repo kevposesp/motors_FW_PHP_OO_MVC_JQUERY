@@ -5,7 +5,7 @@ function changeLang(lang) {
     var elmnts = document.querySelectorAll('[data-tr]');
 
     $.ajax({
-        url: 'view/lang/' + lang + '.json',
+        url: 'http://localhost/motors_FW_PHP_OO_MVC_JQUERY/view/lang/' + lang + '.json',
         type: 'GET',
         dataType: 'JSON',
         success: function (data) {

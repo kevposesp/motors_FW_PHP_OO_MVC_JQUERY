@@ -23,9 +23,9 @@
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
-            <li><a href="?module=home" class="active" data-tr="Home"></a></li>
-            <li><a href="?module=shop&op=list" data-tr="Shop"></a></li>
-            <li><a href="?module=car&op=dash">Admin</a></li>
+            <li><a href="<?= SITE_PATH ?>home" class="active" data-tr="Home"></a></li>
+            <li><a href="<?= SITE_PATH ?>shop" data-tr="Shop"></a></li>
+            <li><a href="<?= SITE_PATH ?>contact">Contact</a></li>
             <li class="menuheaderprofile">
               <div class="main-white-button">
                 <a >

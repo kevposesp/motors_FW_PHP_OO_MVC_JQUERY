@@ -31,6 +31,10 @@
 		public function get_releated_by_mark_BLL($args) {
 			return $this -> dao -> select_data_releated_by_mark($this->db, $args);
 		}
+		
+		public function get_setUnsetLike_BLL($args) {
+			return $this -> dao -> setUnsetLike($this->db, $args);
+		}
 
 	}
 ?>

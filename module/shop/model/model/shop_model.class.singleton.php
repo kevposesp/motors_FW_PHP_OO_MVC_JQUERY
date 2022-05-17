@@ -16,6 +16,7 @@
 
         public function get_cars_with_names($args) {
             return $this -> bll -> get_cars_with_names_BLL($args);
+            // return $args;
         }
         
         public function get_car($id) {
@@ -28,6 +29,10 @@
         
         public function get_releated_by_mark($args) {
             return $this -> bll -> get_releated_by_mark_BLL($args);
+        }
+        
+        public function get_setUnsetLike($args) {
+            return $this -> bll -> get_setUnsetLike_BLL($args);
         }
 
     }

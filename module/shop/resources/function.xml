@@ -20,4 +20,8 @@
         <name>read_releated_by_mark</name>
         <uri>read_releated_by_mark</uri>
     </function>
+    <function>
+        <name>setUnsetLike</name>
+        <uri>setUnsetLike</uri>
+    </function>
 </functions>

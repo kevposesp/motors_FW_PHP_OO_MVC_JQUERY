@@ -26,13 +26,16 @@
     define('VIEW_PATH_INC', SITE_ROOT . 'view/inc/');
 
     //CSS
-    define('CSS_PATH', SITE_ROOT . 'view/css/');
+    // define('CSS_PATH', SITE_ROOT . 'view/css/');
+    define('CSS_PATH', SITE_PATH . 'view/css/');
     
     //JS
-    define('JS_PATH', SITE_ROOT . 'view/js/');
+    // define('JS_PATH', SITE_ROOT . 'view/js/');
+    define('JS_PATH', SITE_PATH . 'view/js/');
     
     //IMG
-    define('IMG_PATH', SITE_ROOT . 'view/img/');
+    // define('IMG_PATH', SITE_ROOT . 'view/img/');
+    define('IMG_PATH', SITE_PATH . 'view/images/');
     
     //MODEL_HOME
     define('UTILS_HOME', SITE_ROOT . 'module/home/utils/');
@@ -58,10 +61,10 @@
     define('JS_VIEW_SEARCH', SITE_PATH . 'module/search/view/js/');
     define ('VIEW_PATH_SEARCH', SITE_ROOT . 'module/search/view/');
     
-    // //MODEL_CONTACT
+    //MODEL_CONTACT
     // define('MODEL_CONTACT', SITE_ROOT . 'module/contact/model/model/');
-    // define('JS_VIEW_CONTACT', SITE_PATH . 'module/contact/view/js/');
-    // define ('VIEW_PATH_CONTACT', SITE_ROOT . 'module/contact/view/');
+    define('JS_VIEW_CONTACT', SITE_PATH . 'module/contact/view/js/');
+    define ('VIEW_PATH_CONTACT', SITE_ROOT . 'module/contact/view/');
     
     // //MODEL_CART
     // define('UTILS_CART', SITE_ROOT . 'module/cart/utils/');
@@ -71,13 +74,13 @@
     // define('JS_VIEW_CART', SITE_PATH . 'module/cart/view/js/');
     // define ('VIEW_PATH_CART', SITE_ROOT . 'module/cart/view/');
     
-    // //MODEL_LOGIN
-    // define('UTILS_LOGIN', SITE_ROOT . 'modules/login/utils/');
-    // define('DAO_LOGIN', SITE_ROOT . 'modules/login/model/DAO/');
-    // define('BLL_LOGIN', SITE_ROOT . 'modules/login/model/BLL/');
-    // define('MODEL_LOGIN', SITE_ROOT . 'modules/login/model/model/');
-    // define('JS_VIEW_LOGIN', SITE_PATH . 'modules/login/view/js/');
-    // define ('VIEW_PATH_LOGIN', SITE_ROOT . 'module/login/view/');
+    //MODEL_AUTH
+    define('UTILS_AUTH', SITE_ROOT . 'module/auth/utils/');
+    define('DAO_AUTH', SITE_ROOT . 'module/auth/model/DAO/');
+    define('BLL_AUTH', SITE_ROOT . 'module/auth/model/BLL/');
+    define('MODEL_AUTH', SITE_ROOT . 'module/auth/model/model/');
+    define('JS_VIEW_AUTH', SITE_PATH . 'module/auth/view/js/');
+    define ('VIEW_PATH_AUTH', SITE_ROOT . 'module/auth/view/');
 
     // Friendly
     define('URL_FRIENDLY', TRUE);

@@ -7,6 +7,7 @@
         private $link;
         private $stmt;
         private $array;
+        private $res;
         static $_instance;
 
         private function __construct() {
@@ -43,15 +44,20 @@
             $this->stmt = $this->link->query($sql);
             return $this->stmt;
         }
-
-        // public function ejecutarObj($sql) {
-        //     $this->stmt = get_object_vars($this->link->query($sql));
-        //     return $this->stmt;
-        // }
         
-        // public function getNumRows($sql) {
-        //     $this->stmt = $this->link->query($sql)->num_rows;
-        //     return $this->stmt;
+        public function ejecutarFOBJ($sql) {
+            $this->stmt = $this->link->query($sql)->fetch_object();
+            return $this->stmt;
+        }
+        
+        public function getNumRows($stmt) {
+            $this->res = $stmt->num_rows;
+            return $this->res;
+        }
+
+        // public function getFOBJ($stmt) {
+        //     $this->res = $stmt->fetch_object();
+        //     return $this->res;
         // }
         
         public function listar($stmt) {

@@ -4,7 +4,7 @@
             <div class="col-lg-4">
                 <div class="about">
                     <div class="logo">
-                        <img src="view/images/black-logo.png" alt="Plot Listing">
+                        <img src="<?= IMG_PATH ?>black-logo.png" alt="Plot Listing">
                     </div>
                     <p>If you consider that <a rel="nofollow" href="https://templatemo.com/tm-564-plot-listing"
                             target="_parent">Plot Listing template</a> is useful for your website, please <a
@@ -64,16 +64,16 @@
 
 <!-- Scripts -->
 <!-- <script src="view/vendor/jquery/jquery.min.js"></script> -->
-<script src="view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="view/js/owl-carousel.js"></script>
-<script src="view/js/animation.js"></script>
-<script src="view/js/imagesloaded.js"></script>
-<script src="view/js/custom.js"></script>
+<script src="<?=SITE_PATH?>view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=JS_PATH?>owl-carousel.js"></script>
+<script src="<?=JS_PATH?>animation.js"></script>
+<script src="<?=JS_PATH?>imagesloaded.js"></script>
+<script src="<?=JS_PATH?>custom.js"></script>
 
 <!--  -->
 
-<!-- <script src="view/js/Utils.js"></script> -->
-<script src="view/js/translate.js"></script>
+<!-- <script src="Utils.js"></script> -->
+<script src="<?=JS_PATH?>translate.js"></script>
 <!-- <script src="view/js/modal_car.js"></script>
 <script src="view/js/dashboard.js"></script>
 <script src="view/js/shop.js"></script>

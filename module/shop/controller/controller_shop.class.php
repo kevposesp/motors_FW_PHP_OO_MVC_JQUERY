@@ -11,8 +11,9 @@
             } else {
                 $filters = null;
             }
-            echo json_encode(common::load_model('shop_model', 'get_cars_with_names', [$filters, $_POST['items_page'], $_POST['total_prod']]));
-            // echo json_encode($_POST);
+            $token = MiddlewareAuth::middlewareAuth();
+            echo json_encode(common::load_model('shop_model', 'get_cars_with_names', [$filters, $_POST['items_page'], $_POST['total_prod'], $token]));
+            // echo json_encode($token);
         }
         
         function read_car() {
@@ -25,6 +26,15 @@
         
         function read_releated_by_mark() {
             echo json_encode(common::load_model('shop_model', 'get_releated_by_mark', [$_POST['id_mark'], $_POST['id_car']]));
+        }
+        
+        function setUnsetLike() {
+            $token = MiddlewareAuth::middlewareAuth();
+            if($token) {
+                echo json_encode(common::load_model('shop_model', 'get_setUnsetLike', [$token['data_id'], $_POST['id']]));
+            } else {
+                echo json_encode("no_id");
+            }
         }
     }
 ?>

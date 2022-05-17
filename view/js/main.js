@@ -102,7 +102,108 @@ function logout() {
     });
 }
 
+
+/*==================== Auth ====================*/
+function actividad() {
+    var conf = {}
+    conf.url = "module/auth/controller/controller_auth.php?op=actividad"
+    ajaxPromise(conf.url, 'POST', 'json')
+        .then(function (data) {
+            if(!data) {
+                if(localStorage.getItem('token')) {
+                    logout()
+                }
+            } else {
+                console.log(data)
+            }
+        }).catch(function (e) {
+            console.log("error" + e);
+        })
+}
+
+function refreshid() {
+    var conf = {}
+    conf.url = "module/auth/controller/controller_auth.php?op=refreshsesion"
+    ajaxPromise(conf.url, 'POST', 'json')
+        .then(function (data) {
+            console.log(data)
+        }).catch(function (e) {
+            console.log("error" + e);
+        })
+}
+
+function refreshtoken() {
+    var conf = {}
+    conf.url = "module/auth/controller/controller_auth.php?op=refreshtoken"
+    ajaxPromise(conf.url, 'POST', 'json', conf.params)
+        .then(function (data) {
+            if(!data) {
+                logout()
+            } else {
+                console.log(data);
+                localStorage.setItem('token', data)
+            }
+        }).catch(function (e) {
+            console.log("error" + e);
+        })
+}
+
+function logout() {
+    var conf = {}
+    // conf.url = "module/auth/controller/controller_auth.php?op=logout"
+    conf.url = friendlyURL('?page=auth&op=logout')
+    ajaxPromise(conf.url, 'POST', 'json')
+        .then(function (data) {
+            alertify.success('Se ha cerrado sesion', 3)
+            setTimeout(() => {
+                window.location.href = friendlyURL('?page=home');
+            }, 3000);
+            localStorage.removeItem('token')
+        }).catch(function (e) {
+            console.log("error" + e);
+        })
+}
+
+function loadButtonProfile() {
+    var conf = {}
+    // conf.url = "module/auth/controller/controller_auth.php?op=infBut"
+    conf.url = friendlyURL('?page=auth&op=infBut')
+    ajaxPromise(conf.url, 'POST', 'json')
+        .then(function (data) {
+            console.log(data);
+            if(data) {
+                $('#username_butt_menu').append(data.username)
+                $('#img_butt_menu').attr("src", data.img_user)
+            } else {
+                $('#username_butt_menu').append("Iniciar / Registrar")
+                $('#img_butt_menu').attr("src", "view/icons/images/user.png")
+            }
+        }).catch(function (e) {
+            console.log("error" + e);
+        })
+}
+
+function loadLogoutButtonProfile() {
+    $("#option-logout").on("click", () => {
+        logout()
+    })
+}
+
 $(document).ready(function() {
     load_menu();
     click_logout();
+
+    actividad()
+    refreshid()
+    refreshtoken()
+
+    loadButtonProfile()
+    loadLogoutButtonProfile()
+
+    setInterval(() => {
+        actividad()
+        refreshid()
+        refreshtoken()
+    }, 600000);
+
 });

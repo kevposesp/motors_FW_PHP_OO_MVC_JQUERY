@@ -13,7 +13,7 @@
     <title>Plot Listing HTML5 Website Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=SITE_PATH?>view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="<?= CSS_PATH ?>fontawesome.css">
@@ -44,7 +44,10 @@
     <link rel="stylesheet" href="<?= SITE_PATH ?>view/vendor/alertify/css/themes/default.min.css" />
 
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-    <script src="<?= SITE_PATH ?>module/search/view/js/search.js"></script>
+
+    <script src="<?= JS_VIEW_CONTACT ?>contact.js"></script>
+    <script src="<?= JS_PATH ?>main.js"></script>
+    <!-- <script src="<?= SITE_PATH ?>module/search/view/js/search.js"></script> -->
 </head>
 
 <body>

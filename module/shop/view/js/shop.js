@@ -408,11 +408,12 @@ function setUnsetLike(id) {
         id
     }
     conf.method = "POST"
-    conf.url = 'module/shop/controller/controller_shop.php?op=setUnsetLike'
+    // conf.url = 'module/shop/controller/controller_shop.php?op=setUnsetLike'
+    conf.url = friendlyURL("?page=shop&op=setUnsetLike")
     ajaxPromise(conf.url, conf.method, 'json', conf.params)
         .then((data) => {
-            if(data == "err_notok") {
-                window.location.href = '?module=auth';
+            if(data == "no_id") {
+                window.location.href = friendlyURL("?page=auth");
             }
         })
         .catch((error) => {

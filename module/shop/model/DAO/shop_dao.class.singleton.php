@@ -39,12 +39,22 @@ class shop_dao
         }
         $sql = "SELECT c.*, m.name_model, m.img_model, mm.name_mark, mm.img_mark, tf.name_type_fuel,
         tf.title_type_fuel, tf.img_type_fuel, cc.name_category, cc.title_category, cc.description_category,
-        -- cc.img_category, cc.icon_category, l.id_car liked FROM cars c
-        cc.img_category, cc.icon_category FROM cars c
+        cc.img_category, cc.icon_category, l.id_car liked FROM cars c
+        -- cc.img_category, cc.icon_category FROM cars c
         left join models m on (c.model_car = m.id_model)
         left join marks mm on (m.mark_model = mm.id_mark)
         left join type_fuel tf on (c.fuel_type_car = tf.id_type_fuel)
         left join categories cc on (c.category_car = cc.id_category)";
+        if($args[3]) {
+            $id_usr = $args[3]['data_id'];
+            $sql .= " left join likes l on c.id_car = l.id_car
+		            and l.id_user = '$id_usr'";
+        } else {
+            $sql .= " left join likes l on c.id_car = l.id_car
+                    and l.id_user = null";
+        }
+        // return $sql;
+
         $ids_tf = [];
         $ids_cc = [];
         $ids_mm = [];
@@ -149,38 +159,33 @@ class shop_dao
         } elseif ($order == null) {
             $sql2 .= " order by c.count desc";
         }
-
-        $count = 0;
-        foreach ($db->listar($db->ejecutar($sql.$sql2)) as $c) {
-            $count++;
-        }
+        $all_cars = array();
+        $all_cars['count'] = $db->getNumRows($db->ejecutar($sql . $sql2));
         $sql2 .= " limit $total_prod, $items_page";
         $sql .= $sql2;
         $cars['data'] = $db->listar($db->ejecutar($sql));
 
         $car = array();
-        $all_cars = array();
 
-        
         foreach ($cars['data'] as $c) {
             $car['data'] = $c;
             // images
-                $rdo_images = $this->select_imgs_car($db, $c['id_car']);
-                $images = array();
-                while($i = mysqli_fetch_assoc($rdo_images)) {
-                    $images[] = $i['url_img'];
-                }
-                $car['imgs'] = $images;
+            $rdo_images = $this->select_imgs_car($db, $c['id_car']);
+            $images = array();
+            while ($i = mysqli_fetch_assoc($rdo_images)) {
+                $images[] = $i['url_img'];
+            }
+            $car['imgs'] = $images;
 
-                $all_cars['data'][] = $car;
-                unset($car);
+            $all_cars['data'][] = $car;
+            unset($car);
         }
-        $all_cars['count'] = $count;
-            
+
         return $all_cars;
     }
 
-    function select_data_car($db, $id) {
+    function select_data_car($db, $id)
+    {
         $sql = "SELECT c.*, m.name_model, mm.name_mark, mm.img_mark, tf.name_type_fuel,
         cc.name_category, cc.icon_category, mm.id_mark
         FROM cars c
@@ -196,21 +201,22 @@ class shop_dao
         $res['data'] = $db->listar($db->ejecutar($sql));
         $imagesa = array();
         $images = $db->listar($this->select_imgs_car($db, $id));
-            // while ($i = mysqli_fetch_assoc($images)) {
-            //     $images[] = $i['url_img'];
-            // }
+        // while ($i = mysqli_fetch_assoc($images)) {
+        //     $images[] = $i['url_img'];
+        // }
         //     $car = get_object_vars($rdo);
         //     $res = array();
         //     $res['data'] = $car;
         foreach ($images as $i) {
             $imagesa[] = $i['url_img'];
         }
-            $res['imgs'] = $imagesa;
+        $res['imgs'] = $imagesa;
 
         return $res;
     }
 
-    function select_imgs_car($db, $id) {
+    function select_imgs_car($db, $id)
+    {
         $sql = "SELECT url_img
         FROM img_cars
         WHERE id_car = '$id'";
@@ -219,28 +225,33 @@ class shop_dao
         return $res;
     }
 
-    function get_type_fuels($db) {
+    function get_type_fuels($db)
+    {
         $sql = "SELECT id_type_fuel as id, name_type_fuel as name FROM type_fuel";
         $res = $db->listar($db->ejecutar($sql));
         return $res;
     }
-    function get_categories($db) {
+    function get_categories($db)
+    {
         $sql = "SELECT id_category as id, name_category as name FROM categories";
         $res = $db->listar($db->ejecutar($sql));
         return $res;
     }
-    function get_marks($db) {
+    function get_marks($db)
+    {
         $sql = "SELECT id_mark as id, name_mark as name FROM marks";
         $res = $db->listar($db->ejecutar($sql));
         return $res;
     }
-    function get_attributes($db) {
+    function get_attributes($db)
+    {
         $sql = "SELECT id_attribute as id, name_attribute as name FROM attributes";
         $res = $db->listar($db->ejecutar($sql));
         return $res;
     }
-    
-    function select_data_filters($db) {
+
+    function select_data_filters($db)
+    {
         $filters = array();
         foreach ($this->get_type_fuels($db) as $t) {
             $filters['typeFuels'][] = $t;
@@ -256,8 +267,9 @@ class shop_dao
         }
         return $filters;
     }
-    
-    function select_data_releated_by_mark($db, $args) {
+
+    function select_data_releated_by_mark($db, $args)
+    {
         $id_mark = $args[0];
         $id_car = $args[1];
         $sql = "SELECT c.*, m.name_model, m.img_model, mm.name_mark, mm.img_mark, tf.name_type_fuel,
@@ -276,6 +288,12 @@ class shop_dao
 
         return $res;
     }
-    
-    
+
+    function setUnsetLike($db, $data){
+        $id_usr = $data[0];
+        $id_car = $data[1];
+        $sql = "call like_proced('$id_usr', '$id_car');";
+        $res = $db->ejecutar($sql);
+        return $res;
+    }
 }

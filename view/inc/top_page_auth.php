@@ -48,6 +48,8 @@
     <script src="<?= SITE_PATH ?>module/auth/view/js/auth.js"></script>
     <script src="<?= JS_PATH ?>main.js"></script>
     <!-- <script src="<?= SITE_PATH ?>module/search/view/js/search.js"></script> -->
+
+    <script src="https://cdn.auth0.com/js/auth0/9.2.2/auth0.min.js"></script>
 </head>
 
 <body>

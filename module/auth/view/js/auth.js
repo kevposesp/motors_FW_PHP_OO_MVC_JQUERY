@@ -303,7 +303,7 @@ function button_recover() {
 function setPass() {
     if (validate_pass()) {
         let pass = $("#new_password").val()
-    let path = window.location.pathname.split('/');
+        let path = window.location.pathname.split('/');
 
         var conf = {}
         conf.url = friendlyURL("?page=auth&op=setNewPass")
@@ -390,6 +390,88 @@ function verify_email(token) {
         })
 }
 
+function socialSignIn() {
+    var webAuth = new auth0.WebAuth({
+        domain: 'dev-a5e26dgt.us.auth0.com',
+        clientID: '7siB8zXIkTvnDKvy03QAAL26NHUWaqui',
+        redirectUri: 'http://localhost/motors_FW_PHP_OO_MVC_JQUERY/auth/',
+        audience: 'https://' + 'dev-a5e26dgt.us.auth0.com' + '/userinfo',
+        responseType: 'token id_token',
+        scope: 'openid profile email user user:email',
+        leeway: 60
+    });
+
+    $('#github, #github2').click(function (e) {
+        e.preventDefault();
+        localStorage.setItem("SocialUser", "github")
+        webAuth.authorize({ connection: 'github' });
+    });
+
+    $('#google, #google2').click(function (e) {
+        e.preventDefault();
+        localStorage.setItem("SocialUser", "google-oauth2")
+        webAuth.authorize({ connection: 'google-oauth2' });
+    });
+
+    function regSocialUser(profile) {
+        var userInfo
+        switch (localStorage.getItem("SocialUser")) {
+            case "github":
+                userInfo = {
+                    uuid: profile.sub,
+                    user: profile.nickname,
+                    email: "https://github.com/" + profile.nickname,
+                    avatar: profile.picture,
+                    entity: "github"
+                }
+                break;
+            case "google-oauth2":
+                userInfo = {
+                    uuid: profile.sub,
+                    user: profile.nickname,
+                    email: profile.email,
+                    avatar: profile.picture,
+                    entity: "google-oauth2"
+                }
+                break;
+        }
+        ajaxPromise("POST", "JSON", friendlyURL("?module=auth&op=sign_in"), userInfo)
+            .then(function (json) {
+                check = true
+                try {
+                    document.getElementById(json.src).innerHTML = json.error
+                    check = false
+                    toastr.error(json.error);
+                } catch (error) {
+                }
+                if (json.msg) {
+                    toastr.info(json.msg)
+                    check = false;
+                }
+                if (check) {
+                    localStorage.setItem('token', json)
+                    loadLastLocation();
+                }
+            }).catch(function () {
+                console.log("Error Login")
+            });
+
+    }
+
+    function handleAuthentication() {
+        webAuth.parseHash(function (err, authResult) {
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                window.location.hash = '';
+                webAuth.client.userInfo(authResult.accessToken, function (err, profile) {
+                    regSocialUser(profile)
+                });
+            }
+        });
+    }
+
+    handleAuthentication();
+}
+
 $(document).ready(function () {
     let path = window.location.pathname.split('/');
     console.log(path);
@@ -414,6 +496,9 @@ $(document).ready(function () {
 
     key_recover_pass()
     button_recover_pass()
+
+    // Social
+    socialSignIn()
 
     protecturl()
     // ajaxPromise("module/auth/controller/controller_auth.php?op=pruebaheaders", 'POST', 'json')

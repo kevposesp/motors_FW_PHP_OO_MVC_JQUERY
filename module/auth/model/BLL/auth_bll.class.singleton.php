@@ -175,4 +175,14 @@ class auth_bll
 			// return $user;
 		}
 	}
+
+	public function get_refreshtoken_BLL($id)
+	{
+		$res = $this->dao->select_user_id($this->db, $id);
+		if ($res) {
+			return jwt_process::encode($id);
+		} else {
+			return false;
+		}
+	}
 }

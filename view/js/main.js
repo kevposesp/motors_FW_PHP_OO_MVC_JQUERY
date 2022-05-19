@@ -106,7 +106,7 @@ function logout() {
 /*==================== Auth ====================*/
 function actividad() {
     var conf = {}
-    conf.url = "module/auth/controller/controller_auth.php?op=actividad"
+    conf.url = friendlyURL('?page=auth&op=actividad')
     ajaxPromise(conf.url, 'POST', 'json')
         .then(function (data) {
             if(!data) {
@@ -123,7 +123,7 @@ function actividad() {
 
 function refreshid() {
     var conf = {}
-    conf.url = "module/auth/controller/controller_auth.php?op=refreshsesion"
+    conf.url = friendlyURL('?page=auth&op=refreshsesion')
     ajaxPromise(conf.url, 'POST', 'json')
         .then(function (data) {
             console.log(data)
@@ -134,15 +134,16 @@ function refreshid() {
 
 function refreshtoken() {
     var conf = {}
-    conf.url = "module/auth/controller/controller_auth.php?op=refreshtoken"
-    ajaxPromise(conf.url, 'POST', 'json', conf.params)
+    conf.url = friendlyURL('?page=auth&op=refreshtoken')
+    ajaxPromise(conf.url, 'POST', 'json')
         .then(function (data) {
-            if(!data) {
-                logout()
-            } else {
-                console.log(data);
-                localStorage.setItem('token', data)
-            }
+            console.log(data);
+            // if(!data) {
+            //     logout()
+            // } else {
+            //     console.log(data);
+            //     localStorage.setItem('token', data)
+            // }
         }).catch(function (e) {
             console.log("error" + e);
         })

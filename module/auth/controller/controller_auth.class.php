@@ -27,7 +27,7 @@
             $token = MiddlewareAuth::middlewareAuth();
             // echo json_encode($token);
             if($token) {
-                    echo json_encode(common::load_model('auth_model', 'get_infBut', $token['data_id']));
+                echo json_encode(common::load_model('auth_model', 'get_infBut', $token['data_id']));
             } else {
                 echo json_encode(false);
             }
@@ -50,5 +50,23 @@
             echo json_encode(common::load_model('auth_model', 'get_signin', $_POST));
         }
 
+        function actividad() {
+            echo json_encode(common::load_model('auth_model', 'get_actividad'));
+        }
+        
+        function refreshsesion() {
+            session_regenerate_id();
+            $_SESSION['time'] = time();
+            echo json_encode(true);
+        }
+        
+        function refreshtoken() {
+            $token = MiddlewareAuth::middlewareAuth();
+            if($token) {
+                echo json_encode(common::load_model('auth_model', 'get_refreshtoken', $token['data_id']));
+            } else {
+                echo json_encode(false);
+            }
+        }
+
     }
-?>

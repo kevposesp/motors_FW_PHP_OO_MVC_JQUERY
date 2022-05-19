@@ -45,5 +45,24 @@
         public function get_signin($data) {
             return $this -> bll -> get_signin_BLL($data);
         }
+        
+        public function get_actividad() {
+            $act = false;
+            if (!isset($_SESSION['time'])) {
+                $act = false;
+            } else {
+                if ((time() - $_SESSION['time']) >= 1800) {
+                    $act = false;
+                } else {
+                    $act = true;
+                    // $act = time() - $_SESSION['time'];
+                }
+            }
+            return $act;
+        }
+
+        public function get_refreshtoken($id) {
+            return $this -> bll -> get_refreshtoken_BLL($id);
+        }
     }
 ?>

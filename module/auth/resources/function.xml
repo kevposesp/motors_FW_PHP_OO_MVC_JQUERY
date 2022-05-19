@@ -40,4 +40,16 @@
         <name>signin</name>
         <uri>signin</uri>
     </function>
+    <function>
+        <name>actividad</name>
+        <uri>actividad</uri>
+    </function>
+    <function>
+        <name>refreshsesion</name>
+        <uri>refreshsesion</uri>
+    </function>
+    <function>
+        <name>refreshtoken</name>
+        <uri>refreshtoken</uri>
+    </function>
 </functions>

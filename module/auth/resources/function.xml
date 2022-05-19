@@ -36,4 +36,8 @@
         <name>setNewPass</name>
         <uri>setNewPass</uri>
     </function>
+    <function>
+        <name>signin</name>
+        <uri>signin</uri>
+    </function>
 </functions>

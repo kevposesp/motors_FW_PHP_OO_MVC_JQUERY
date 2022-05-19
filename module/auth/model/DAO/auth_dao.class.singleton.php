@@ -40,7 +40,7 @@ class auth_dao
         $switch = false;
         $id = null;
         while (!$switch) { // Genera id random
-            $id = common::generate_token_secure(12);
+            $id = "motors|" . common::generate_token_secure(12);
             $search = $db->ejecutarFOBJ("SELECT * FROM users WHERE id_user = '$id'");
             if ($search == null) {
                 $switch = true;
@@ -48,8 +48,8 @@ class auth_dao
                 $switch = false;
             }
         }
-        $sql_exist_user = $db->ejecutarFOBJ("SELECT * FROM users WHERE username_user = '$username'");
-        $sql_exist_email = $db->ejecutarFOBJ("SELECT * FROM users WHERE email_user = '$email'");
+        $sql_exist_user = $db->ejecutarFOBJ("SELECT * FROM users WHERE username_user = '$username' and id_user like 'motors|%'");
+        $sql_exist_email = $db->ejecutarFOBJ("SELECT * FROM users WHERE email_user = '$email' and id_user like 'motors|%'");
 
         if ($sql_exist_user == null && $sql_exist_email == null) {
             $sql = "INSERT INTO `users`(`id_user`, `username_user`, `email_user`, `password_user`, `type_user`, `avatar_user`, `verify_email`, `token_verify`)
@@ -71,9 +71,31 @@ class auth_dao
         return $res;
     }
 
+    function register_user_signin($db, $user)
+    {
+        $id = $user['id'];
+        $img = $user['img'];
+        $email = $user['email'];
+        $name = $user['name'];
+
+        $sql = "INSERT INTO `users` (`id_user`, `username_user`, `email_user`, `type_user`, `avatar_user`, `verify_email`)
+        VALUES ('$id', '$name', '$email', 'client', '$img', 1)";
+        // return $sql;
+        $res = $db->ejecutar($sql);
+
+        return $res;
+    }
+
     function select_user($db, $username)
     {
         $sql = "SELECT * FROM users WHERE username_user = '$username' or email_user = '$username'";
+        $res = $db->ejecutarFOBJ($sql);
+        return $res;
+    }
+
+    function select_user_id($db, $id)
+    {
+        $sql = "SELECT * FROM users WHERE id_user = '$id'";
         $res = $db->ejecutarFOBJ($sql);
         return $res;
     }

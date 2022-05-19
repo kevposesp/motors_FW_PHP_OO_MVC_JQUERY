@@ -28,7 +28,6 @@
         
         public function get_verify($token) {
             return $this -> bll -> get_verify_BLL($token);
-            // return $token;
         }
         
         public function get_infBut($id) {
@@ -37,12 +36,14 @@
 
         public function get_recover($usr) {
             return $this -> bll -> get_recover_BLL($usr);
-            // return $token;
         }
 
         public function get_setNewPass($data) {
             return $this -> bll -> get_setNewPassword_BLL($data);
-            // return $data;
+        }
+
+        public function get_signin($data) {
+            return $this -> bll -> get_signin_BLL($data);
         }
     }
 ?>

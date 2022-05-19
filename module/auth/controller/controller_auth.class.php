@@ -25,6 +25,7 @@
 
         function infBut() {
             $token = MiddlewareAuth::middlewareAuth();
+            // echo json_encode($token);
             if($token) {
                     echo json_encode(common::load_model('auth_model', 'get_infBut', $token['data_id']));
             } else {
@@ -43,6 +44,10 @@
 
         function setNewPass() {
             echo json_encode(common::load_model('auth_model', 'get_setNewPass', $_POST));
+        }
+
+        function signin() {
+            echo json_encode(common::load_model('auth_model', 'get_signin', $_POST));
         }
 
     }

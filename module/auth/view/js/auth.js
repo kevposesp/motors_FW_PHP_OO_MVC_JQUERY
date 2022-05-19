@@ -435,22 +435,16 @@ function socialSignIn() {
                 }
                 break;
         }
-        ajaxPromise("POST", "JSON", friendlyURL("?module=auth&op=sign_in"), userInfo)
-            .then(function (json) {
-                check = true
-                try {
-                    document.getElementById(json.src).innerHTML = json.error
-                    check = false
-                    toastr.error(json.error);
-                } catch (error) {
-                }
-                if (json.msg) {
-                    toastr.info(json.msg)
-                    check = false;
-                }
-                if (check) {
-                    localStorage.setItem('token', json)
-                    loadLastLocation();
+        
+        ajaxPromise(friendlyURL("?page=auth&op=signin"), 'POST', 'json', userInfo)
+            .then(function (data) {
+                console.log(data);
+                if (data['data']) {
+                    alertify.success('Has iniciado session', 3)
+                    localStorage.setItem('token', data['data'])
+                    setTimeout(() => {
+                        window.location.href = friendlyURL("?page=home");
+                    }, 3000);
                 }
             }).catch(function () {
                 console.log("Error Login")
@@ -464,6 +458,7 @@ function socialSignIn() {
                 window.location.hash = '';
                 webAuth.client.userInfo(authResult.accessToken, function (err, profile) {
                     regSocialUser(profile)
+                    // console.log(profile);
                 });
             }
         });

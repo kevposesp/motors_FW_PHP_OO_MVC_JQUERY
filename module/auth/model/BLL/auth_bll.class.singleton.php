@@ -145,4 +145,34 @@ class auth_bll
 		$res = $this->dao->infBut($this->db, $id);
 		return $res;
 	}
+
+	public function get_signin_BLL($data)
+	{
+		$usr_ex = $this->dao->select_user_id($this->db, $data['uuid']);
+		if ($usr_ex) {
+			$res['status'] = false;
+			$res['msg'] = "err_exist";
+
+			$res['data'] = jwt_process::encode($data['uuid']);
+			$_SESSION['id_usr'] = $data['uuid'];
+			return $res;
+		} else {
+			$user['id'] = $data['uuid'];
+			$user['img'] = $data['avatar'];
+			$user['email'] = $data['email'];
+			$user['name'] = $data['user'];
+			$reg_usr = $this->dao->register_user_signin($this->db, $user);
+			if ($reg_usr) {
+				$res['status'] = true;
+				$res['data'] = jwt_process::encode($user['id']);
+				$_SESSION['id_usr'] = $user['id'];
+				return $res;
+			} else {
+				$res['status'] = false;
+				$res['msg'] = "err_reg";
+				return $res;
+			}
+			// return $user;
+		}
+	}
 }

@@ -4,9 +4,9 @@ _Project of the third quarter of 1st of Web Applications Development_
 
 * [WEBSITE] - _Click here to go to the web._
 
-[WEBSITE]: <https://phpmvcjquery.prueba.jals.es>
+[WEBSITE]: <https://kevinposada.es/daw/motors_FW_PHP_OO_MVC_JQUERY>
 
-<h3 align="center"><strong>JUAN ANTONIO LÓPEZ SEGUÍ (<a href="https://jals.es">www.jals.es</a>)</strong></h3>
+<h3 align="center"><strong>Kevin Andres Posada Espitia (<a href="https://kevinposada.es">www.kevinposada.es</a>)</strong></h3>
 
 ## INDEX
 

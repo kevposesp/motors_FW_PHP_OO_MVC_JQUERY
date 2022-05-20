@@ -55,13 +55,18 @@ class auth_bll
 	{
 		$usr = $this->dao->select_user($this->db, $data['usr']);
 		if ($usr) {
-			if (password_verify($data['password'], $usr->password_user)) {
-				$res['status'] = true;
-				$res['data'] = jwt_process::encode($usr->id_user);
-				$_SESSION['id_usr'] = $usr->id_user;
+			if($usr->verify_email != 0) {
+				if (password_verify($data['password'], $usr->password_user)) {
+					$res['status'] = true;
+					$res['data'] = jwt_process::encode($usr->id_user);
+					$_SESSION['id_usr'] = $usr->id_user;
+				} else {
+					$res['status'] = false;
+					$res['msg'] = "err_pass";
+				}
 			} else {
 				$res['status'] = false;
-				$res['msg'] = "err_pass";
+				$res['msg'] = "err_verify";
 			}
 		} else {
 			$res['status'] = false;

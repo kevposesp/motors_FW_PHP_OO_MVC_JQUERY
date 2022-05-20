@@ -138,12 +138,13 @@ function refreshtoken() {
     ajaxPromise(conf.url, 'POST', 'json')
         .then(function (data) {
             console.log(data);
-            // if(!data) {
-            //     logout()
-            // } else {
-            //     console.log(data);
-            //     localStorage.setItem('token', data)
-            // }
+            if(!data) {
+                localStorage.removeItem('token')
+            // logout()
+            } else {
+                console.log(data);
+                localStorage.setItem('token', data)
+            }
         }).catch(function (e) {
             console.log("error" + e);
         })
@@ -207,4 +208,15 @@ $(document).ready(function() {
         refreshtoken()
     }, 600000);
 
+    var men = $('.menuheaderprofile')
+    if(localStorage.getItem('token')) {
+        men.on('click', function() {
+            men.toggleClass('active')
+        })
+    } else {
+        men.on('click', function() {
+            window.location.href = friendlyURL('?page=auth');
+        })
+        
+    }
 });

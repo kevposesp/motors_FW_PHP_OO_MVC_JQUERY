@@ -1,6 +1,7 @@
 .menuheaderprofile {
     position: relative;
     .desp-div-auth {
+        display: none;
         position: absolute;
         right: 0;
         left: 40px;
@@ -22,6 +23,9 @@
         }
     }
     &.active {
+        .desp-div-auth {
+            display: block;
+        }
         .main-white-button {
             a {
                 border-radius: 7px 7px 0px 0px;

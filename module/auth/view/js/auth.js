@@ -239,7 +239,9 @@ function login() {
                     setTimeout(() => {
                         window.location.href = friendlyURL("?page=home");
                     }, 3000);
-                } else if (!data['status']) {
+                } else if (!data['status'] && data['msg'] == 'err_verify') {
+                    alertify.error('No esta verificada la cuenta', 3)
+                } else {
                     alertify.error('Error al iniciar', 3)
                 }
             }).catch(function (e) {

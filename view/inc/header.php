@@ -23,12 +23,12 @@
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
-            <li><a href="<?= SITE_PATH ?>home" class="active" data-tr="Home"></a></li>
-            <li><a href="<?= SITE_PATH ?>shop" data-tr="Shop"></a></li>
-            <li><a href="<?= SITE_PATH ?>contact">Contact</a></li>
+            <li><a href="<?= SITE_PATH ?>home" class="active module-menu" data-tr="Home"></a></li>
+            <li><a href="<?= SITE_PATH ?>shop" class="module-menu" data-tr="Shop"></a></li>
+            <li><a href="<?= SITE_PATH ?>contact" class="module-menu">Contact</a></li>
             <li class="menuheaderprofile">
               <div class="main-white-button">
-                <a >
+                <a>
                   <i>
                     <img id="img_butt_menu" alt="" />
                   </i>

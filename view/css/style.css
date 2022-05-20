@@ -4867,6 +4867,7 @@ header .lang {
   position: relative;
 }
 .menuheaderprofile .desp-div-auth {
+  display: none;
   position: absolute;
   right: 0;
   left: 40px;
@@ -4889,6 +4890,9 @@ header .lang {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.menuheaderprofile.active .desp-div-auth {
+  display: block;
 }
 .menuheaderprofile.active .main-white-button a {
   border-radius: 7px 7px 0px 0px;

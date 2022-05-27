@@ -130,7 +130,6 @@ function loadCategories(limit) {
                     $('#third-btn-bot').attr('bot-id', "categories:" + category.id_category + ":true").addClass("bot-shop")
 
                 }
-
                 count++
             })
             bot()

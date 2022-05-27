@@ -4,7 +4,7 @@ _Project of the third quarter of 1st of Web Applications Development_
 
 * [WEBSITE] - _Click here to go to the web._
 
-[WEBSITE]: <https://kevinposada.es/daw/motors_FW_PHP_OO_MVC_JQUERY>
+[WEBSITE]: <https://daw.webforshops.com>
 
 <h3 align="center"><strong>Kevin Andres Posada Espitia (<a href="https://kevinposada.es">www.kevinposada.es</a>)</strong></h3>
 
@@ -49,11 +49,8 @@ _Project of the third quarter of 1st of Web Applications Development_
 | Page | Features |
 |---------|-------------|
 | Home | Carrousel of brands, categories, fueltypes, other searchs and news|
-<!-- | Main | Dropdown Search, Autocomplete search more visited, Dropdown Menu| -->
 | Shop | List, Pagination, Search view, No result view, Details, Filters, Map|
 | Products list | Datatable, Modal|
-<!-- | Details products | All information about the specific product, Show related products with a Google Books Api, Show More button| -->
-<!-- | Footer | GMaps with the position of our restaurants, InfoWindow, Marker, Hidden Api Key, Zoom to customer position| -->
 | Contact | Contact form whith SMTP|
 | Login | Register, Login, Social Login and Register, Email Verification, JWT, Recover Password|
 

@@ -126,7 +126,6 @@ function refreshid() {
     conf.url = friendlyURL('?page=auth&op=refreshsesion')
     ajaxPromise(conf.url, 'POST', 'json')
         .then(function (data) {
-            console.log(data)
         }).catch(function (e) {
             console.log("error" + e);
         })
@@ -142,7 +141,6 @@ function refreshtoken() {
                 localStorage.removeItem('token')
             // logout()
             } else {
-                console.log(data);
                 localStorage.setItem('token', data)
             }
         }).catch(function (e) {
